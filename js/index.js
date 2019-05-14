@@ -42,6 +42,7 @@ function trackKeys () {
 }
 
 //Implement a wheel event to scale the boat image
+//Both the child and parent will have wheel listeners, and stop the propagation
 let destinationImage = document.querySelector('.content-destination img');
 let scale = 1;
 destinationImage.addEventListener('wheel', event => {
@@ -55,6 +56,18 @@ destinationImage.addEventListener('wheel', event => {
     
     scale = Math.min(Math.max(scale, 0.1), 3.5); //set limits on the min and max
     destinationImage.style.transform = `scale(${scale})`;
+    event.stopPropagation();
+});
+
+//the stopPropagation stops the code below from triggering when the wheel is on the image
+let nestedParent = document.querySelector('.content-destination')
+nestedParent.addEventListener('wheel', function (event){
+    event.preventDefault();
+    if(event.deltaY<0){
+        nestedParent.style.backgroundColor = 'red'
+    } else {
+        nestedParent.style.backgroundColor = ''
+    }
 });
 
 //Implement a load event to produce an animation
@@ -130,3 +143,12 @@ allParas.forEach(el => {
         spanWarning.style.fontWeight = 'bold';
     })
 })
+
+//stole this from MDN, not sure if this is what the task was looking for?
+window.addEventListener('beforeunload', (event) => {
+    // Cancel the event as stated by the standard.
+    event.preventDefault();
+    // Chrome requires returnValue to be set.
+    event.returnValue = '';
+    
+  });
