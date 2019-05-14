@@ -16,7 +16,7 @@ navBar.addEventListener('mouseout', function () {
     links.forEach(el => el.style.fontSize = '1.6rem');
 });
 
-//Implement a keydown to move the fun bus image
+//Implement a click/keydown to move the fun bus image
 let topImage = document.querySelector('header img');
 topImage.addEventListener('click', trackKeys);
 topImage.style.marginTop = '0px';
@@ -88,3 +88,45 @@ function stopResizing () {
 }
 
 window.addEventListener ('resize', stopResizing);
+
+//Implement a scroll event
+let navContainer = document.querySelector('.nav-container');
+let imagesMain = document.querySelectorAll('.content-section img');
+imagesMain.forEach(el => {
+    el.classList.add('hidden')
+});
+window.addEventListener('scroll', function () {
+    imagesMain.forEach(el => {
+        if(document.documentElement.scrollTop > 200) {
+            el.classList.remove('hidden')
+            el.classList.add('slideUp')
+        } else {
+            el.classList.add('hidden');
+            el.classList.remove('slideUp');
+        }
+    });
+
+    if(document.documentElement.scrollTop>125){
+        navContainer.style.background = 'yellow'
+    } else {
+        navContainer.style.background = '';
+    }
+});
+
+//Implement a dblclick event
+let destinationSection = document.querySelector('.content-destination');
+destinationSection.addEventListener('dblclick', function () {
+    this.classList.toggle('large');
+});
+
+//Implement a copy event
+
+let allParas = [...document.querySelectorAll('p')]
+allParas.forEach(el => {
+    el.addEventListener('copy', function () {
+        let spanWarning = document.createElement('span');
+        el.appendChild(spanWarning);
+        spanWarning.textContent = `\n Don't try to steal my work without crediting me!`
+        spanWarning.style.fontWeight = 'bold';
+    })
+})
