@@ -1,3 +1,4 @@
+
 //function to be called if block gets right mousedown
 function toTop (el){
     let parent = el.parentNode;
@@ -27,7 +28,7 @@ function moveRocket (isMoving, el){
         
         clearInterval(blastRocket);//make sure the blast timer loop is turned off
         descendRocket = setInterval (function () { //turn on descend timer loop
-            el.style.marginLeft = parseInt(el.style.marginLeft) - 5 + 'px'; //see above; same but take 5 px away
+            el.style.marginLeft = `${parseInt(el.style.marginLeft)-5}px`; //see above; same but take 5 px away
             if(el.style.marginLeft === '10px'){ //once you get back to the starting point, turn the descend timer loop off
                 clearInterval(descendRocket);
             }
@@ -54,4 +55,5 @@ rockets.forEach(el => {
     el.addEventListener('contextmenu', e => {
         e.preventDefault(); //need contextmenu to not show up when right clicked
     })
-});
+}); 
+

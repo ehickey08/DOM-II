@@ -56,8 +56,8 @@ destinationImage.addEventListener('wheel', event => {
     
     scale = Math.min(Math.max(scale, 0.1), 3.5); //set limits on the min and max
     destinationImage.style.transform = `scale(${scale})`;
-    // event.stopPropagation();
-});
+    event.stopPropagation();
+}, true);
 
 //the stopPropagation stops the code below from triggering when the wheel is on the image
 let nestedParent = document.querySelector('.content-destination')
