@@ -350,3 +350,43 @@ img {
   background: #FFFFFF;
   color: #17A2B8;
 }
+
+@keyframes bounce-in{
+    0% { 
+        transform: scale(0.1);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes slideUp{
+    0% {
+        opacity: 0;
+        transform: translateY(70%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+.slideUp{
+    animation-name: slideUp;
+    animation-duration: 1s;
+    visibility: visible;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.large{
+    transform: scale(1.3)
+}
